@@ -10,7 +10,8 @@ const Banner = () => {
       <div className="min-h-[550px] flex justify-center items-center backdrop-blur-xl py-12 sm:py-0">
         <div className="container">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-            {/* Image Section */}
+       
+       
             <div data-aos="flip-up" className="flex justify-center">
               <img
                 src={TravelImg}
@@ -19,7 +20,7 @@ const Banner = () => {
               />
             </div>
 
-            {/* Text Content Section */}
+          
             <div className="flex flex-col justify-center gap-6 sm:pt-0 lg:px-16">
               <h1 data-aos="fade-up" className="text-3xl sm:text-4xl font-bold text-green-900">
                 Discover the Beauty of Uttarakhand
@@ -50,7 +51,7 @@ const Banner = () => {
   );
 };
 
-// Reusable Feature Card Component
+
 const FeatureCard = ({ icon, bg, label }) => {
   return (
     <div className="flex items-center gap-4">

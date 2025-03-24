@@ -1,150 +1,122 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FaCaretDown } from "react-icons/fa";
 import ResponsiveMenu from "./ResponsiveMenu";
 import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
 
 export const NavbarLinks = [
-  {
-    name: "Home",
-    link: "/",
-  },
-  {
-    name: "About",
-    link: "/about",
-  },
-  {
-    name: "Blogs",
-    link: "/blogs",
-  },
-  {
-    name: "Best Places",
-    link: "/best-places",
-  },
+  { name: "Home", link: "/" },
+  { name: "About", link: "/about" },
+  { name: "Blogs", link: "/blogs" },
+  { name: "Best Places", link: "/best-places" },
 ];
 
-const DropdownLinks = [
-  {
-    name: "Our Services",
-    link: "/#services",
-  },
-  {
-    name: "Top Brands",
-    link: "/#mobile_brands",
-  },
-  {
-    name: "Location",
-    link: "/#location",
-  },
+const QuickLinks = [
+  { name: "Hotels & Resorts", link: "/hotel" },
+  { name: "Tour Guides", link: "/guide" },
+  { name: "Transport Options", link: "/transport" },
+  { name: "Tour Packages", link: "/package" },
 ];
 
 const Navbar = ({ handleOrderPopup }) => {
   const [showMenu, setShowMenu] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <>
-      <nav className="fixed top-0 right-0 w-full z-50 bg-white backdrop-blur-sm text-black shadow-md">
-        <div className="bg-gradient-to-r from-primary to-secondary text-white ">
-          <div className="container py-[2px] sm:block hidden">
-          </div>
-        </div>
-        <div className="container py-3 sm:py-0">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4  font-bold text-2xl">
-              <Link to={"/"} onClick={() => window.scrollTo(0, 0)}>
-                <img src="src\assets\logo.jpg" alt="" className="ml-8 h-16" />
-              </Link>
-            </div>
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
+      <div className="container mx-auto flex items-center justify-between py-4 px-6 md:px-12 lg:px-20">
+      
+        <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-3">
+          <img src="src/assets/logo.jpg" alt="Logo" className="h-14 w-auto rounded-md shadow-sm" />
+          <span className="text-2xl font-bold text-gray-900">Travel Uttarakhand</span>
+        </Link>
 
+    
+        <div className="hidden md:flex items-center gap-10">
+          {NavbarLinks.map(({ name, link }) => (
+            <NavLink
+              key={name}
+              to={link}
+              className="text-gray-700 font-semibold hover:text-primary transition-all duration-300"
+            >
+              {name}
+            </NavLink>
+          ))}
 
-            <div className="hidden md:block">
-              <ul className="flex items-center gap-6 ">
-                <li className="py-4">
-                  <NavLink to="/" activeClassName="active">
-                    Home
-                  </NavLink>
-                </li>
-                <li className="py-4">
-                  <NavLink to="/blogs" activeClassName="active">
-                    Blogs
-                  </NavLink>
-                </li>
-                <li className="py-4">
-                  <NavLink to="/best-places" activeClassName="active">
-                    Best Places
-                  </NavLink>
-                </li>
-                <li className="py-4">
-                  <NavLink to="/about" activeClassName="active">
-                    About
-                  </NavLink>
-                </li>
+          {/* Quick Links Dropdown */}
+          <div className="relative" ref={dropdownRef}>
+            <button
+              className="flex items-center gap-2 text-gray-700 font-semibold hover:text-primary transition-all"
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+            >
+              Quick Links <FaCaretDown className={`transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
+            </button>
 
-                <li className="group relative cursor-pointer">
-                  <a
-                    href="/#home"
-                    className="flex h-[72px] items-center gap-[2px]"
-                  >
-                    Quick Links{" "}
-                    <span>
-                      <FaCaretDown className="transition-all duration-200 group-hover:rotate-180" />
-                    </span>
-                  </a>
-                  <div className="absolute -left-9 z-[9999] hidden w-[150px] rounded-md bg-white p-2 text-black group-hover:block shadow-md ">
-                    <ul className="space-y-3">
-                      {DropdownLinks.map((data) => (
-                        <li key={data.name}>
-                          <a
-                            className="inline-block w-full rounded-md p-2 hover:bg-primary/20"
-                            href={data.link}
-                          >
-                            {data.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div className="flex items-center gap-4">
-
-
-              {/* {booking boton} */}
-              <button
-  className="  bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary transition-transform transform hover:scale-105 duration-300 ease-in-out text-black font-bold px-6 py-2 rounded-full shadow-lg mr-10"
-  onClick={handleOrderPopup}
->
-  Book Now
-</button>
-
-
-
-              {/* Mobile Hamburger icon */}
-              <div className="md:hidden block">
-                {showMenu ? (
-                  <HiMenuAlt1
-                    onClick={toggleMenu}
-                    className=" cursor-pointer transition-all"
-                    size={30}
-                  />
-                ) : (
-                  <HiMenuAlt3
-                    onClick={toggleMenu}
-                    className="cursor-pointer transition-all"
-                    size={30}
-                  />
-                )}
+            {dropdownOpen && (
+              <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md w-52 py-2 z-50 border border-gray-200">
+                <ul className="space-y-2">
+                  {QuickLinks.map(({ name, link }) => (
+                    <li key={name}>
+                      <NavLink
+                        to={link}
+                        className="block px-5 py-2 text-gray-700 hover:bg-gray-100 transition-all rounded-md"
+                        onClick={() => setDropdownOpen(false)} // Close on selection
+                      >
+                        {name}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
+            )}
           </div>
         </div>
-        <ResponsiveMenu setShowMenu={setShowMenu} showMenu={showMenu} />
-      </nav>
-    </>
+
+        
+        <div className="flex items-center gap-5">
+          <button
+            className="bg-gradient-to-r from-green-400 to-blue-600 from-primary to-secondary hover:from-secondary hover:to-primary text-white font-semibold px-6 py-2 rounded-full shadow-md transition-all hover:scale-105"
+            onClick={handleOrderPopup}
+          >
+            Book Now
+          </button>
+
+          {/* Mobile Menu Icon */}
+          <div className="md:hidden">
+            {showMenu ? (
+              <HiMenuAlt1
+                onClick={() => setShowMenu(!showMenu)}
+                size={30}
+                className="text-gray-700 cursor-pointer"
+              />
+            ) : (
+              <HiMenuAlt3
+                onClick={() => setShowMenu(!showMenu)}
+                size={30}
+                className="text-gray-700 cursor-pointer"
+              />
+            )}
+          </div>
+        </div>
+      </div>
+
+      
+      <ResponsiveMenu setShowMenu={setShowMenu} showMenu={showMenu} />
+    </nav>
   );
 };
 

@@ -26,7 +26,7 @@ const BlogsDetails = (props) => {
         <p>{description}</p>
       </div>
 
-      {/* All Blogs Section */}
+     
       <BlogsComp />
     </div>
   );

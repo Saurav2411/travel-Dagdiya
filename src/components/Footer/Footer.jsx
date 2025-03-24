@@ -13,14 +13,14 @@ import { Link } from "react-router-dom";
 const FooterLinks = [
   { title: "Home", link: "/" },
   { title: "About", link: "/about" },
-  { title: "Destinations", link: "/destinations" },
+  { title: "Destinations", link: "/best-places" },
   { title: "Blogs", link: "/blogs" },
 ];
 
 const Footer = () => {
   return (
     <footer className="relative bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white">
-      {/* Background Video */}
+     
       <video
         autoPlay
         loop
@@ -32,7 +32,8 @@ const Footer = () => {
 
       <div className="relative z-10 container mx-auto px-6 py-12">
         <div className="grid md:grid-cols-3 gap-8">
-          {/* Logo & Contact Info */}
+         
+
           <div className="space-y-4">
             <h1 className="flex items-center gap-3 text-3xl font-bold">
               <img src="src/assets/logo.jpg" alt="Logo" className="h-14 rounded-lg" />
@@ -53,7 +54,7 @@ const Footer = () => {
               </p>
             </div>
 
-            {/* Social Icons */}
+           
             <div className="flex gap-4 mt-4">
               <a href="#" className="text-xl transition-transform duration-300 hover:scale-125">
                 <FaInstagram />
@@ -67,7 +68,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Links Section */}
+         
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             <div>
               <h2 className="text-lg font-semibold mb-3">Quick Links</h2>
@@ -99,7 +100,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Newsletter Subscription */}
+         
           <div className="space-y-4">
             <h2 className="text-lg font-semibold">Subscribe to Our Newsletter</h2>
             <p className="text-sm text-gray-300">
@@ -118,7 +119,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Footer Bottom */}
+       
         <div className="mt-8 border-t border-gray-700 pt-4 text-center text-sm text-gray-400">
           © 2024 Travel Dagdiya. All Rights Reserved | Saurav Chuahan
         </div>

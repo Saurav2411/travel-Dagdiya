@@ -39,7 +39,7 @@ const Testimonial = () => {
     dots: true,
     arrows: false,
     infinite: true,
-    speed: 700, // Smoother transition
+    speed: 700, 
     slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
@@ -56,7 +56,7 @@ const Testimonial = () => {
   return (
     <div className="py-10 bg-gradient-to-b from-green-100 to-blue-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto">
-        {/* Header */}
+       
         <div className="text-center mb-12 max-w-xl mx-auto">
           <p className="text-sm font-semibold text-green-600">Testimonials</p>
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
@@ -68,7 +68,7 @@ const Testimonial = () => {
           </p>
         </div>
 
-        {/* Testimonials */}
+       
         <div className="max-w-3xl mx-auto">
           <Slider {...settings}>
             {testimonialData.map(({ id, name, text, img }) => (

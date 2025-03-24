@@ -1,7 +1,7 @@
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import {NavbarLinks} from "./Navbar";
+import { NavbarLinks } from "./Navbar";
 
 const ResponsiveMenu = ({ showMenu, setShowMenu }) => {
   console.log("showMenu", showMenu);
@@ -22,7 +22,7 @@ const ResponsiveMenu = ({ showMenu, setShowMenu }) => {
         <nav className="mt-12">
           <ul className="space-y-4 text-xl">
             {NavbarLinks.map((data) => (
-              <li>
+              <li key={data.name}> 
                 <Link
                   to={data.link}
                   onClick={() => setShowMenu(false)}
@@ -36,9 +36,7 @@ const ResponsiveMenu = ({ showMenu, setShowMenu }) => {
         </nav>
       </div>
       <div className="footer">
-        <h1>
-          By Saurav Chauhan{" "}
-        </h1>
+        <h1>By Saurav Chauhan</h1>
       </div>
     </div>
   );
