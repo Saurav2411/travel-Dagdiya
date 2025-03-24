@@ -40,10 +40,14 @@ const Navbar = ({ handleOrderPopup }) => {
     <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between py-4 px-6 md:px-12 lg:px-20">
       
-        <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-3">
-          <img src="src/assets/logo.jpg" alt="Logo" className="h-14 w-auto rounded-md shadow-sm" />
-          <span className="text-2xl font-bold text-gray-900">Travel Uttarakhand</span>
-        </Link>
+      <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-3">
+        <img src="src\assets\logo.jpg" alt="Logo" className="h-14 w-auto rounded-md shadow-sm" />
+        <span className="text-2xl font-bold">
+        <span className="text-blue-600">travel</span>
+        <span className="text-green-600">Dagdiya</span>
+        </span>
+      </Link>
+
 
     
         <div className="hidden md:flex items-center gap-10">
@@ -74,7 +78,7 @@ const Navbar = ({ handleOrderPopup }) => {
                       <NavLink
                         to={link}
                         className="block px-5 py-2 text-gray-700 hover:bg-gray-100 transition-all rounded-md"
-                        onClick={() => setDropdownOpen(false)} // Close on selection
+                        onClick={() => setDropdownOpen(false)} 
                       >
                         {name}
                       </NavLink>
@@ -95,7 +99,7 @@ const Navbar = ({ handleOrderPopup }) => {
             Book Now
           </button>
 
-          {/* Mobile Menu Icon */}
+       
           <div className="md:hidden">
             {showMenu ? (
               <HiMenuAlt1
