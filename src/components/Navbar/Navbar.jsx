@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FaCaretDown } from "react-icons/fa";
 import ResponsiveMenu from "./ResponsiveMenu";
+import logo from "../../assets/logo.jpg";
 import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
 
 export const NavbarLinks = [
@@ -41,7 +42,7 @@ const Navbar = ({ handleOrderPopup }) => {
       <div className="container mx-auto flex items-center justify-between py-4 px-6 md:px-12 lg:px-20">
       
       <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-3">
-        <img src="src\assets\logo.jpg" alt="Logo" className="h-14 w-auto rounded-md shadow-sm" />
+      <img src={logo} alt="Logo" className="h-14 w-auto rounded-md shadow-sm" />
         <span className="text-2xl font-bold">
         <span className="text-blue-600">travel</span>
         <span className="text-green-600">Dagdiya</span>
