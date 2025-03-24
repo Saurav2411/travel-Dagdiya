@@ -41,16 +41,16 @@ const Navbar = ({ handleOrderPopup }) => {
     <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between py-4 px-6 md:px-12 lg:px-20">
       
-      <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-3">
-      <img src={logo} alt="Logo" className="h-14 w-auto rounded-md shadow-sm" />
-        <span className="text-2xl font-bold">
-        <span className="text-blue-600">travel</span>
-        <span className="text-green-600">Dagdiya</span>
-        </span>
-      </Link>
+       
+        <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-3">
+          <img src={logo} alt="Logo" className="h-14 w-auto rounded-md shadow-sm" onError={(e) => (e.target.style.display = "none")} />
+          <span className="text-2xl font-bold flex">
+            <span className="text-blue-600">travel</span>
+            <span className="text-green-600">Dagdiya</span>
+          </span>
+        </Link>
 
-
-    
+        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-10">
           {NavbarLinks.map(({ name, link }) => (
             <NavLink
@@ -91,16 +91,16 @@ const Navbar = ({ handleOrderPopup }) => {
           </div>
         </div>
 
-        
+
         <div className="flex items-center gap-5">
           <button
-            className="bg-gradient-to-r from-green-400 to-blue-600 from-primary to-secondary hover:from-secondary hover:to-primary text-white font-semibold px-6 py-2 rounded-full shadow-md transition-all hover:scale-105"
+            className="bg-gradient-to-r from-green-400 to-blue-600 hover:from-blue-600 hover:to-green-400 text-white font-semibold px-6 py-2 rounded-full shadow-md transition-all hover:scale-105"
             onClick={handleOrderPopup}
           >
             Book Now
           </button>
 
-       
+          {/* Mobile Menu Toggle */}
           <div className="md:hidden">
             {showMenu ? (
               <HiMenuAlt1
